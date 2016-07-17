@@ -32,6 +32,7 @@ module GrapeTokenAuth
                   :redirect_whitelist,
                   :param_white_list,
                   :authentication_keys,
+                  :authentication_scope,
                   :omniauth_prefix,
                   :additional_serialization_blacklist,
                   :ignore_default_serialization_blacklist,
@@ -50,6 +51,7 @@ module GrapeTokenAuth
       @change_headers_on_each_request         = true
       @mappings                               = {}
       @authentication_keys                    = [:email]
+      @authentication_scope                   = nil
       @omniauth_prefix                        = '/omniauth'
       @additional_serialization_blacklist     = []
       @ignore_default_serialization_blacklist = false
