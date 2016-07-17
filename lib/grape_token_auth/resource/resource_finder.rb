@@ -34,7 +34,13 @@ module GrapeTokenAuth
         query_value.downcase!
       end
 
-      resource_class.where(query, query_value).first
+      authentication_scope_key = configuration.authentication_scope
+      if authentication_scope_key
+        query = "#{authentication_scope_key} = ? AND " + query
+        resource_class.where(query, params[authentication_scope_key], query_value).first
+      else
+        resource_class.where(query, query_value).first
+      end
 
 #      if ActiveRecord::Base.connection.adapter_name.downcase.starts_with? 'mysql'
 #        q = "BINARY " + q
